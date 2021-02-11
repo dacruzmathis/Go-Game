@@ -27,5 +27,6 @@ public class GameDisplay extends JPanel {
 		
 		paintGoban.paint(goban, g);
 		paintGoban.grill(goban, g);
+		paintGoban.hoshi(goban, g);
 	}
 }
