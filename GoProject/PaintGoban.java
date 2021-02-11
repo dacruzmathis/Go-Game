@@ -24,16 +24,30 @@ public class PaintGoban {
 			}
 		}
 	}
-	public void grill(Goban goban , Graphics g) {
+		public void grill(Goban goban , Graphics g) {
 		int blockSize = GobanConfiguration.BLOCK_SIZE;
 		Intersection[][] intersections = goban.getIntersections();
-		for (int abscisseIndex = 0; abscisseIndex < goban.getAbscisseCount(); abscisseIndex++) {
-			for (int ordonneeIndex = 0; ordonneeIndex < goban.getOrdonneeCount(); ordonneeIndex++) {
+		for (int abscisseIndex = 1; abscisseIndex < (goban.getAbscisseCount()); abscisseIndex++) {
+			for (int ordonneeIndex = 1; ordonneeIndex < (goban.getOrdonneeCount()); ordonneeIndex++) {
 				Intersection intersection = intersections[abscisseIndex][ordonneeIndex];
 				g.setColor(Color.BLACK);
-				g.drawLine(abscisseIndex*blockSize,ordonneeIndex*blockSize,abscisseIndex*blockSize,(goban.getOrdonneeCount())*blockSize);
-
+				g.drawLine(abscisseIndex*blockSize,ordonneeIndex*blockSize,abscisseIndex*blockSize,(goban.getOrdonneeCount()-1)*blockSize);
+				g.drawLine(abscisseIndex*blockSize,ordonneeIndex*blockSize,(goban.getAbscisseCount()-1)*blockSize,ordonneeIndex*blockSize);
+				
 			}
 		}
 	}
-}
+	public void hoshi(Goban goban , Graphics g) {
+		int blockSize = GobanConfiguration.BLOCK_SIZE;
+		Intersection[][] intersections = goban.getIntersections();
+		for (int abscisseIndex = 1; abscisseIndex < (goban.getAbscisseCount()); abscisseIndex++) {
+			for (int ordonneeIndex = 1; ordonneeIndex < (goban.getOrdonneeCount()); ordonneeIndex++) {
+				if (abscisseIndex == 4 && ordonneeIndex == 4 || abscisseIndex == 14 && ordonneeIndex == 14 || abscisseIndex == 4 && ordonneeIndex == 14 || abscisseIndex == 14 && ordonneeIndex == 4)  {
+					g.setColor(Color.BLACK);
+					g.fillOval((abscisseIndex)*blockSize, (ordonneeIndex)*blockSize, blockSize/2, blockSize/2);
+				}
+			}
+		}	
+	}	
+}			
+	
