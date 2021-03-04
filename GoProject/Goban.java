@@ -1,7 +1,9 @@
 /**
  * 
  */
-package go;
+package goban.map;
+
+import config.GobanConfiguration;
 
 /**
  * @author afatc
@@ -12,7 +14,10 @@ public class Goban {
 	
 	private int abscisseCount;
 	private int ordonneeCount;
+	private int AbscisseStart = 100;
+	private int OrdonneeStart = 100;
 	
+	/*Creation of the table to put stones on the intersections of the goban*/
 	public Goban(int abscisseCount , int ordonneeCount) {
 		this.abscisseCount = abscisseCount;
 		this.ordonneeCount = ordonneeCount;
@@ -21,8 +26,11 @@ public class Goban {
 		
 		for(int abscisseIndex = 0; abscisseIndex < abscisseCount; abscisseIndex++) {
 			for (int ordonneeIndex = 0; ordonneeIndex < ordonneeCount; ordonneeIndex++) {
-				intersections[abscisseIndex][ordonneeIndex] = new Intersection(abscisseIndex, ordonneeIndex);				
+				intersections[abscisseIndex][ordonneeIndex] = new Intersection(AbscisseStart,OrdonneeStart);	
+				OrdonneeStart += GobanConfiguration.BLOCK_SIZE;
 			}
+			OrdonneeStart = 100;
+			AbscisseStart += GobanConfiguration.BLOCK_SIZE;
 		}
 	}
 
@@ -41,7 +49,4 @@ public class Goban {
 	public Intersection getIntersection(int abscisse , int ordonnee) {
 		return intersections[abscisse][ordonnee];
 	}
-	 public Goban(Intersection position) {
-		 super();
-	 }
 }

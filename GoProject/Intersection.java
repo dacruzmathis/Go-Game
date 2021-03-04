@@ -1,12 +1,14 @@
 /**
  * 
  */
-package go;
+package goban.map;
 
 /**
  * @author afatc
  *
  */
+
+/*Creation of the Intersection class*/
 public class Intersection {
 	
 	private int abscisse;
