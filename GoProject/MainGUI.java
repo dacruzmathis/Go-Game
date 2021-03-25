@@ -18,6 +18,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import config.GobanConfiguration;
+
 
 
 
@@ -124,9 +126,9 @@ public class MainGUI extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			window.dispose();			
+			window.dispose();	
+			GobanConfiguration.TURN=0;
 			gameFrame = new GameFrame();
-		}
-		
+		}		
 	}
 }

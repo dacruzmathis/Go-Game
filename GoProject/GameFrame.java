@@ -207,29 +207,77 @@ private static final long serialVersionUID = 1L;
 		public void mouseClicked(MouseEvent arg0) {
 			int x = arg0.getX()+(GobanConfiguration.BLOCK_SIZE/2);
 			int y = arg0.getY()+(GobanConfiguration.BLOCK_SIZE/2);
-			Intersection stonePosition = dashboard.getStonePosition(x,y);
 			
-			if(!manager.isOccupied(stonePosition) && !manager.isForbidden(stonePosition)) {
-				if(GobanConfiguration.TURN%3==0) {				
-					Stones blackstones = new BlackStone(stonePosition); 
-					manager.putStones(blackstones);
-					updateWHITEColorMessage("WHITE");
+			int xl = x-(GobanConfiguration.BLOCK_SIZE);
+			int xr = x+(GobanConfiguration.BLOCK_SIZE);
+			
+			int yu = y-(GobanConfiguration.BLOCK_SIZE);
+			int yd = y+(GobanConfiguration.BLOCK_SIZE);
+			
+			Intersection stonePosition = dashboard.getStonePosition(x,y);
+			System.out.println(stonePosition);
+
+			if(!manager.isOccupied(stonePosition)) {
+				int liberties=4;
+				if(!goban.isOnLeftBorder(stonePosition)) {
+					Intersection left = dashboard.getStonePosition(xl, y);
+					Stones l = manager.searchStones(left);
+					if((manager.isExist(left) && manager.isOccupied(left)) && manager.isEnemy(manager.turnColor(),l.getColor())) {
+						liberties--;
+					}
 				}
-				else if(GobanConfiguration.TURN%3==1) {
-					Stones whitestones = new WhiteStone(stonePosition);
-					manager.putStones(whitestones);
-					updateREDColorMessage(" RED ");
+				if(!goban.isOnRightBorder(stonePosition)) {
+					Intersection right = dashboard.getStonePosition(xr, y);
+					Stones r = manager.searchStones(right); 
+					if((manager.isExist(right) && manager.isOccupied(right)) && manager.isEnemy(manager.turnColor(),r.getColor())) {
+						liberties--;
+					}
 				}
-				else {
-	
-					Stones redstones = new RedStone(stonePosition);
-					manager.putStones(redstones);
-					updateBLACKColorMessage("BLACK");
+				if(!goban.isOnTopBorder(stonePosition)) {
+					Intersection up = dashboard.getStonePosition(x, yu);
+					Stones u = manager.searchStones(up);
+					if((manager.isExist(up)&& manager.isOccupied(up)) && manager.isEnemy(manager.turnColor(),u.getColor())) {
+						liberties--;
+					}
 				}
-				manager.isCaptured();
-				passcount=0;
-				GobanConfiguration.TURN++;
-				dashboard.repaint();
+				if(!goban.isOnBottomBorder(stonePosition)) {
+					Intersection down = dashboard.getStonePosition(x, yd);
+					Stones d = manager.searchStones(down);
+					if((manager.isExist(down)&& manager.isOccupied(down)) && manager.isEnemy(manager.turnColor(),d.getColor())) {
+						liberties--;
+					}
+				}
+			
+				if(goban.isOnBottom(stonePosition)) {
+					liberties = liberties-2;
+				}
+				else if(goban.isOnBorder(stonePosition)) {
+					liberties--;
+				}
+				System.out.println("liberties = "+liberties);
+				if(liberties != 0) {
+					if(GobanConfiguration.TURN%3==0) {				
+						Stones blackstones = new BlackStone(stonePosition); 
+						manager.putStones(blackstones);
+						updateWHITEColorMessage("WHITE");
+					}
+					else if(GobanConfiguration.TURN%3==1) {
+						Stones whitestones = new WhiteStone(stonePosition);
+						manager.putStones(whitestones);
+						updateREDColorMessage(" RED ");
+					}
+					else {
+		
+						Stones redstones = new RedStone(stonePosition);
+						manager.putStones(redstones);
+						updateBLACKColorMessage("BLACK");
+					}
+					System.out.println(manager.toString());
+					//manager.isCaptured();
+					passcount=0;
+					GobanConfiguration.TURN++;
+					dashboard.repaint();
+				}
 			}
 		}
 		
