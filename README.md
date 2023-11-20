@@ -3,7 +3,8 @@
 The project consist to develop a go game (korean traditional game) but with some exciting new rules :  
 * 3-players games (black, white and red stones).  
 * 1 Megastone by player per game (permite to eliminate all stones near to this megastone).  
-* Basic AI to play against the computer.  
+* Basic AI to play against the computer.
+
 Licence 2 project made for the Genie Logiciel cursus at CY Paris Université.  
 Made by Da Cruz Mathis, Afatchawo Junior, Chriqui Nathan.  
   
