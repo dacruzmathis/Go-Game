@@ -1,6 +1,6 @@
 # Go Game
 
-The project consist to develop a go game (korean traditional game) but with some exciting new rules :  
+The project consist to develop a go game (korean traditional game) but with some additional rules :  
 * 3-players games (black, white and red stones).  
 * 1 Megastone by player per game (permite to eliminate all stones near to this megastone).  
 * Basic AI to play against the computer.
