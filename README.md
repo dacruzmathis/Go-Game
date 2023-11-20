@@ -1,4 +1,4 @@
-# GoProject
+# Go Game
 Adaptation du jeu de go chinois classique. 
 Ajout des mégapions, adaptation des règles de comptage.  
 Le moteur de jeu avec les toutes les règles.  
