@@ -12,7 +12,7 @@ Here, some pictures from our game :
 The main window :   
 ![Alt text](img/fen2.jpg)
 
-The goban's looks after a game :  
+The goban's aspect after a game :  
 ![Alt text](img/goban.jpg)
 
 The endgame window which display all the scores :  
